@@ -73,7 +73,6 @@ contract Crowdfunding {
         request.approvalCount++;
     }
 
-
     function finalizeRequest(uint index) public restricted {
         Request storage request = requests[index];
 
@@ -84,5 +83,4 @@ contract Crowdfunding {
         request.recipient.transfer(request.value);
         request.isComplete = true;
     }
-
 }

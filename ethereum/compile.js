@@ -16,9 +16,9 @@ const output = solc.compile(source, 1).contracts;
 fs.ensureDirSync(buildPath);// write output to the recreating 'build' directory
 
 // output each contracts
-for(let contract in output) {
-  fs.outputJsonSync(
-    path.resolve(buildPath, contract.replace(':', '') + '.json'),
-    output[contract]
-  )
+for (let contract in output) {
+    fs.outputJsonSync(
+        path.resolve(buildPath, contract.replace(':', '') + '.json'),
+        output[contract]
+    )
 }
