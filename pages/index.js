@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'semantic-ui-react';
-import factory from '../ethereum/factory';
+import factoryInstance from '../ethereum/factory';
 import Layout from '../components/Layout';
 import { Link } from '../routes';
 
 class ProjectIndex extends Component {
 
+    // component life cycle hook
     // Class method :initial rendering not to SSR
     static async getInitialProps() {
         // array
-        const projects = await factory.methods.getDeployedCrowdfunding().call();
+        const projects = await factoryInstance.methods.getDeployedCrowdfunding().call();
         // console.log(projects);
         return { projects }
     }
@@ -36,14 +37,7 @@ class ProjectIndex extends Component {
                 <div>
                     <h2>Open Projects</h2>
                     <Link route="/projects/new">
-                        <a>
-                            <Button
-                                floated={"right"}
-                                content={"Create Project"}
-                                icon={"add"}
-                                primary
-                            />
-                        </a>
+                        <a><Button floated={"right"} content={"Create Project"} icon={"add"} primary /></a>
                     </Link>
                     {this.renderProjects()}
                 </div>
