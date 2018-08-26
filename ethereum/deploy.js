@@ -1,5 +1,5 @@
 const Web3 = require('web3');
-const network = require('./network');
+const { network } = require('./network');
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const CrowdfundingFactory = require('./build/CrowdfundingFactory');
 
