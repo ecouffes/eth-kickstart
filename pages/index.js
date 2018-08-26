@@ -27,14 +27,8 @@ class ProjectIndex extends Component {
     // cannot use async keyword
     render() {
         return (
-            // <Parent>hoge</Parent>
-            // => "props.children" in Parent component
             <Layout>
                 <div>
-                    <link
-                        rel="stylesheet"
-                        href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
-                    ></link>
                     <h2>Open Projects</h2>
                     <Button
                         floated={"right"}
