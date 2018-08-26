@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Card, Button } from 'semantic-ui-react'
 import factory from '../ethereum/factory';
+import Layout from '../components/Layout'
 
 class ProjectIndex extends Component {
 
@@ -9,7 +10,7 @@ class ProjectIndex extends Component {
         // array
         const projects = await factory.methods.getDeployedCrowdfunding().call();
         // console.log(projects);
-        return { projects }
+        return {projects}
     }
 
     renderProjects() {
@@ -20,23 +21,30 @@ class ProjectIndex extends Component {
                 fluid: true
             }
         });
-
         return <Card.Group items={items}/>;
     }
 
     // cannot use async keyword
     render() {
         return (
-            <div>
-                <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
-                <h2>Open Projects</h2>
-                {this.renderProjects()}
-                <Button
-                    content={"Create Project"}
-                    icon={"add"}
-                    primary
-                />
-            </div>
+            // <Parent>hoge</Parent>
+            // => "props.children" in Parent component
+            <Layout>
+                <div>
+                    <link
+                        rel="stylesheet"
+                        href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
+                    ></link>
+                    <h2>Open Projects</h2>
+                    <Button
+                        floated={"right"}
+                        content={"Create Project"}
+                        icon={"add"}
+                        primary
+                    />
+                    {this.renderProjects()}
+                </div>
+            </Layout>
         )
     }
 
