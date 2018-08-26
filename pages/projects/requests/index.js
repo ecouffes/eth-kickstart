@@ -2,11 +2,26 @@ import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { Link } from '../../../routes';
 import Layout from '../../../components/Layout';
+import crowdfunding from '../../../ethereum/crowdfunding';
 
 class RequestsIndex extends Component {
     static async getInitialProps(props) {
         const { address } = props.query;
-        return { address }
+        const crowdfundingInstance = crowdfunding(address);
+        const requestCount = await crowdfundingInstance.methods.getRequestsCount().call();
+
+        // TODO requestsの中身が何もない場合は、error
+        // Promise.all([Promise1, Promise2, Promise3...])
+        const requests = await Promise.all(
+            // Array(count).fill()
+            // count数のarrayをundefinedで埋める
+            Array(requestCount).fill().map((currentVal, index) => {
+                return crowdfundingInstance.methods.requests(index).call();
+            })
+        );
+        // console.log(requests);
+
+        return { address, requests, requestCount }
     }
 
     render() {
