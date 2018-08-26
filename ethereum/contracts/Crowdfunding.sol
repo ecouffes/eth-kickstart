@@ -24,6 +24,7 @@ contract Crowdfunding {
         mapping(address => bool) approvals;
     }
 
+    // cannot return Struct Array
     Request[] public requests;
     address public manager;
     uint public miniumContribution;
@@ -96,7 +97,7 @@ contract Crowdfunding {
         );
     }
 
-    function getRequestCount() public view returns (uint) {
+    function getRequestsCount() public view returns (uint) {
         return requests.length;
     }
 }
