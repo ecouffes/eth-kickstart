@@ -15,7 +15,7 @@ class RequestsIndex extends Component {
         const requests = await Promise.all(
             // Array(count).fill()
             // count数のarrayをundefinedで埋める
-            Array(requestCount).fill().map((currentVal, index) => {
+            Array(parseInt(requestCount)).fill().map((currentVal, index) => {
                 return crowdfundingInstance.methods.requests(index).call();
             })
         );
